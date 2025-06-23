@@ -26,8 +26,7 @@ jobs:
 
     - name: Start Playit and Set Up RDP Tunnel
       env:
-        PLAYIT_AUTH_KEY: 4a47386dea8b61e163df09d7836eb09a2531628dfa7a7673f9938c8b4ef7316e
-
+        PLAYIT_AUTH_KEY: ${{ secrets.PL }} 
       run: |
         Start-Process -FilePath "$env:USERPROFILE\playit.exe" -ArgumentList "--secret $env:PLAYIT_AUTH_KEY" -NoNewWindow -Wait
         Start-Process -FilePath "$env:USERPROFILE\playit.exe" -NoNewWindow
@@ -35,6 +34,3 @@ jobs:
         
     # Prevent workflow to stop
     - name: Keep the GitHub Action Runner Alive
-      run: |
-          Start-Sleep -Seconds 11800  # Adjust the duration based on your needs
-
